@@ -2,14 +2,28 @@ import React from 'react';
 import Header from './components/Header'
 import './App.css';
 import Home from './components/Home';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+import Detail from './components/Detail';
+
 function App() {
-    const vutton=(e) =>{
-      console.log (React.version)
-    } 
   return (
     <div className="App">
-      <Header />
-      <Home />
+      <Router>
+        <Header />
+        <Switch>
+          <Route path="/detail">
+            <Detail />
+          </Route>
+          <Route path="/">
+            <Home />
+          </Route>
+        </Switch>
+      </Router>
     </div>
   );
 }
