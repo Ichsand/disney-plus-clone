@@ -27,10 +27,10 @@ function Detail() {
                 </GroupWatchButton>
             </Controls>
             <SubTitle>
-                <span>2021 • 1 Season • Science Fiction, Action-Adventure, Buddy</span>
+                2021 • 1 Season • Science Fiction, Action-Adventure, Buddy
             </SubTitle>
             <Description>
-                <span>Marvel Studios’ “The Falcon and The Winter Soldier” stars Anthony Mackie as Sam Wilson aka The Falcon, and Sebastian Stan as Bucky Barnes aka The Winter Soldier. The pair, who came together in the final moments of “Avengers: Endgame,” team up on a global adventure that tests their abilities—and their patience.</span>
+                Marvel Studios’ “The Falcon and The Winter Soldier” stars Anthony Mackie as Sam Wilson aka The Falcon, and Sebastian Stan as Bucky Barnes aka The Winter Soldier. The pair, who came together in the final moments of “Avengers: Endgame,” team up on a global adventure that tests their abilities—and their patience.
             </Description>
         </Container>
     )
@@ -62,7 +62,7 @@ const ImageTitle = styled.div`
     min-height: 170px;
     width: 25vw;
     min-width: 200px;
-    margin-top: 26px;
+    margin-top: 20px;
 
 
     img{
@@ -130,6 +130,7 @@ const SubTitle = styled.div`
 `
 const Description = styled.div`
     line-height: 1.4;
+    max-width: 760px;
     font-size: 20px;
     margin-top: 16px;
     color: rgb(249, 249, 249);
