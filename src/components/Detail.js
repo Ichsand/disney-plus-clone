@@ -1,37 +1,59 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
 import styled from 'styled-components'
+import db from '../firebase';
 
 function Detail() {
+    const { id } = useParams();
+    const [ movie, setMovie ] = useState();
+    useEffect(() => {
+        // Get the movie info from db firebase
+        db.collection("movies")
+        .doc(id)
+        .get()
+        .then((doc)=>{
+            if(doc.exists){
+                // save the movie data
+                setMovie(doc.data());
+            } else {
+                //redirect to home page
+            }
+        })
+    }, [id])
     return (
         <Container>
-            <Background>
-                <img src="https://hardrockfm.com/wp-content/uploads/2021/02/The-Falcon-and-The-Winter-Soldier.png" />
-            </Background>
-            <ImageTitle>
-                <img src="https://terrigen-cdn-dev.marvel.com/content/prod/1x/falcws_lob_log_div_02.png" />
-            </ImageTitle>
-            <Controls>
-                <PlayButton>
-                    <img src="/images/play-icon-black.png" />
-                    <span>PLAY</span>
-                </PlayButton>
-                <TrailerButton>
-                    <img src="/images/play-icon-white.png" />
-                    <span>Trailer</span>
-                </TrailerButton>
-                <AddButton>
-                    <span>+</span>
-                </AddButton>
-                <GroupWatchButton>
-                    <img src="/images/group-icon.png" />
-                </GroupWatchButton>
-            </Controls>
-            <SubTitle>
-                2021 • 1 Season • Science Fiction, Action-Adventure, Buddy
-            </SubTitle>
-            <Description>
-                Marvel Studios’ “The Falcon and The Winter Soldier” stars Anthony Mackie as Sam Wilson aka The Falcon, and Sebastian Stan as Bucky Barnes aka The Winter Soldier. The pair, who came together in the final moments of “Avengers: Endgame,” team up on a global adventure that tests their abilities—and their patience.
-            </Description>
+            {movie && (
+            <>
+                <Background>
+                    <img src={movie.backgroundImg} alt="background" />
+                </Background>
+                <ImageTitle>
+                    <img src={movie.titleImg} alt="movielogo" />
+                </ImageTitle>
+                <Controls>
+                    <PlayButton>
+                        <img src="/images/play-icon-black.png" alt="black play icon" />
+                        <span>PLAY</span>
+                    </PlayButton>
+                    <TrailerButton>
+                        <img src="/images/play-icon-white.png" alt="white play icon" />
+                        <span>Trailer</span>
+                    </TrailerButton>
+                    <AddButton>
+                        <span>+</span>
+                    </AddButton>
+                    <GroupWatchButton>
+                        <img src="/images/group-icon.png" alt="group icon" />
+                    </GroupWatchButton>
+                </Controls>
+                <SubTitle>
+                    {movie.subTitle}
+                </SubTitle>
+                <Description>
+                    {movie.description}
+                </Description>
+                </>
+                )}
         </Container>
     )
 }
